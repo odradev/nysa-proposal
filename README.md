@@ -1,18 +1,33 @@
 # Nysa Proposal
-Nysa aims to transpile smart contracts written in Solidity to smart contracts compatible with near-sdk. Thanks to this approach the outcome smart contract will be as efficent as a contract written using near-sdk. Our first experiments showed some promising results that overcame the gas efficiency of Aurora even 25x.
-
-## Universal design
+Nysa aims to transpile smart contracts written in Solidity into Rust code compatible with near-sdk.
+Thanks to this approach the output smart contract will be as efficient as a contract written using pure near-sdk.
+Our first experiments showed some promising results that beat the gas efficiency of Aurora by 2500 percent.
 
 ## What problem do we want to solve?
-The main advantage of smart contracts written in Solidity is that they are already written, and battle-tested hence are considered secured. Platforms that offer writing smart contracts in Rust suffer from lacking codebase, so they look at Solidity codebase with jealousy.To take advantage of the existing codebase are many briding solutions that allow to execution of Solidity contracts on different platforms. The main issue of these solutions is the efficency. We strongly belive there is a better solution - transpiling Solidity code into Rust code. In return we get the same neat, easy and secure but native code.
+The main advantage of smart contracts written in Solidity is that they are already written and battle-tested - hence considered secure.
+Platforms that offer writing smart contracts in Rust suffer from small amount of libraries and example code,
+so they look at Solidity codebase with jealousy. 
+To take advantage of the existing codebase there are many bridging solutions that allow execution of Solidity contracts
+on different platforms. The main issue of these solutions is the efficiency. We strongly believe there is a better solution
+- transpiling Solidity code into Rust code. In return, we get the same neat, easy and secure but native code.
 
 ## What do we want to offer?
 To win developers' hearts, we want to offer:
-1. One
-2. Two
+1. A transpiler that will convert Solidity code into Rust code compatible with near-sdk.
+2. A set of tools that will allow developers to easily test and generate wasm files ready to deploy.
+3. Better efficiency of resulting code.
 
-# Nysa
+## How we do it?
+<!-- C3 linearization and magic. -->
 
+## Examples
+Here we present some examples of Solidity code and the resulting Rust code. Also, we show the gas cost of the execution using Aurora and Nysa.
+
+### Fibonacci
+<!-- code examples and gas costs -->
+
+### Status Message
+<!-- code examples and gas costs -->
 
 # Timeline
 Proposed list of milestones.
