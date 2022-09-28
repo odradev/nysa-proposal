@@ -3,7 +3,7 @@ Nysa aims to transpile smart contracts written in Solidity into Rust code.
 Thanks to this approach the output smart contract will be as efficient as
 a contract written using pure [near-sdk-rs](https://github.com/near/near-sdk-rs/).
 Our first experiments showed promising results.
-We have the example, that is 25 times more gas efficient than Aurora.
+We have a working example showing that Nysa is 25 times more gas efficient than Aurora.
 
 ## What problem do we solve?
 The main advantage of smart contracts written in Solidity is that they are already
@@ -15,23 +15,23 @@ into WASM bytecode. The main issue of this solutions is the efficiency.
 
 ## What do we offer?
 We strongly believe there is a better solution: **transpiling Solidity code into Rust** code.
-It allows to take advantage of the already existing Rust to WASM compilation pipeline.
-In return, we get the same neat, easy and secure but native code.
+It allows us to take advantage of the already existing Rust to WASM compilation pipeline.
+In return, we get the same neat, easy, and secure but native code.
 
 ## How we do it?
-In terms of programming langauges the list of Solidity features can be treated
+In terms of programming languages, the list of Solidity features can be treated
 as a subset of Rust's features.
-That means it's possible to convert Solidity into Rust, but the oposite is not possible.
+That means it's possible to convert Solidity into Rust, but the opposite is not possible.
 Our architecture is split into 3 main pieces:
 
 - `Solidity Parser` build on top of [lalrpop](https://github.com/lalrpop/lalrpop).
-It parses Solidity Syntax into developer friendly Solidity AST.
-We have borrowed it as a whole from [the Solang project](https://github.com/hyperledger/solang).
-Further development might require some modification, but it can be considered 95% complete.
+  It parses Solidity Syntax into developer-friendly Solidity AST.
+  We have borrowed it as a whole from [the Solang project](https://github.com/hyperledger/solang).
+  Further development might require some modification, but it can be considered 95% complete.
 
-- `C3 Lang` is our approach to implement Solidity's (and Python's) inheritence model.
-We designed it as a intermediete target for the transpiler.
-While it works, it needs better tests, redesign and documentation.
+- `C3 Lang` is our approach to implement Solidity's (and Python's) inheritance model.
+  We designed it as an intermediate target for the transpiler.
+  While it works, it needs better tests, redesign, and documentation.
 
 - `Nysa Core` translates the output of the `Solidity Parser` into a `C3 Lang` Rust.
 
@@ -45,7 +45,7 @@ We managed to implement the bare minimum to transpile a simple Solidity code.
 It lives in [the Nysa repository](https://github.com/odradev/nysa).
 
 ## Fibonacci example
-We have a non-trivial example implemented - fibonacci sequence.
+We have a non-trivial example implemented - Fibonacci sequence.
 
 Solidity code:
 ```solidity
@@ -73,7 +73,7 @@ contract Fibonacci {
 }
 ```
 
-It corresponds to the following Rust code:
+It is transpiled into the following Rust code:
 ```rust
 #[near_bindgen]
 #[derive(Default, BorshDeserialize, BorshSerialize)]
@@ -117,10 +117,10 @@ Running transpiled code on Testnet directly used `9 Tgas` and cost `0.00096 yoct
 Proposed list of milestones.
 
 ## Milestone #1 MVP (Flipper)
-Basic version of Solidity Flipper contract, which is compatible with Nysa.
+The basic version of the Solidity Flipper contract is compatible with Nysa.
 The code can be transpiled to Rust and compiled into a wasm file.
-In compare to the current code it will be redesigned and prepared for
-the large-scale development.
+In comparison to the current code, it will be redesigned and prepared for
+large-scale development.
 
 Covered Solidity features:
 - Functions (modifiers and constructors, Function Calls, returns).
@@ -130,7 +130,7 @@ Covered Solidity features:
 
 ## Milestone #2 MVP 2.0 (Flipper 2.0)
 Advanced version of Solidity Flipper contract, which uses local variables,
-error handling, control structures and operators is compatible with Nysa.
+error handling, control structures, and operators are compatible with Nysa.
 
 Covered Solidity features:
 - Checked/unchecked arithmetic.
@@ -141,7 +141,7 @@ Covered Solidity features:
 
 ## Milestone #3 Inherited Flipper
 Solidity Flipper contract now implements an Interface and inherits an abstract Flipper contract.
-Additionally, Pragma section is read by transpiler.
+Additionally, the Pragma section is read by transpiler.
 Contracts written in Solidity below 0.8.0 are rejected, >=0.8.* are compiled.
 
 Covered Solidity features:
@@ -151,7 +151,7 @@ Covered Solidity features:
 - Pragma.
 
 ## Milestone #4 ERC20
-ERC20 from OpenZeppelin contract is compatible with Nysa.
+ERC20 from the OpenZeppelin contract is compatible with Nysa.
 This milestone requires working events.
 Additionally, we wish to implement support for imports and external contract calls.
 
@@ -164,7 +164,7 @@ Covered Solidity features:
 This milestone focuses on more advanced solidity features, such as Special Variables and Functions,
 conversions between elementary types.
 At this point conversion of structs and enums will be available.
-Solidity contracts which uses those features are compatible with Nysa.
+Solidity contracts which use those features are compatible with Nysa.
 
 ## Milestone #6 Function modifiers
 This milestone focuses on some unique Solidity features like function modifiers,
@@ -172,15 +172,15 @@ time units, ether units, and immutable state variables.
 
 ## Milestone #7 Libraries
 This milestone aims to cover the missing solidity features like libraries, `using for` keyword,
-and other advanced langauge structures. Secondary goal is to fully cover with tests
+and other advanced language structures. A secondary goal is to fully cover with tests
 the order of evaluation of expressions.
 
 ## Milestone #8 OpenZeppelin
-Solidity contracts written using OpenZeppelin framework are compatible with Nysa.
+Solidity contracts written using the OpenZeppelin framework are compatible with Nysa.
 
 ## Milestone #8 Docs
 The documentation of all the supported features and discrepancies to EVM are documented.
-It includes tutorials and introduction for Solidity developers. 
+It includes tutorials and an introduction for Solidity developers.
 
 ## Milestone #9 Solidity tests
 Tests written in solidity can be transpiled into Rust tests.
