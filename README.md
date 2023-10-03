@@ -46,9 +46,6 @@ It lives in [the Nysa repository](https://github.com/odradev/nysa).
 ## Owned Token example
 We have a non-trivial example implemented - OwnedToken which is a basic Erc20 token with ownership.
 
-
-The target contract - `OwnedToken` inherits from both `Context` and `ERC20`.
-
 Solidity code:
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -123,11 +120,11 @@ contract OwnedToken is Owner, ERC20 {
 ```
 
 At first glance, the contract may seem simple, but it covers many Solidity concepts.
-The `Owner` contract has a simple *state*, implements a *constructor*, and possesses the 'onlyOwner' *modifier*, 
-which *reverts* the transaction if *`msg.sender`* is not the contract owner. On the other hand, 
-the 'ERC20' state contains a *mapping* and defines the 'Transfer' *event*, which is *emitted* upon `transfer`. 
-The contract logic consists of various *arithmetic* and *logical operators*. Finally, the main contract, `OwnedToken` 
-*inherits* from `Context` and `ERC20` and calls super contracts constructors.
+The `Owner` contract has a simple **state**, implements a **constructor**, and possesses the `onlyOwner` **modifier**, 
+which *reverts* the transaction if **`msg.sender`** is not the contract owner. On the other hand, 
+the `ERC20` state contains a **mapping** and defines the `Transfer` **event**, which is **emitted** upon `transfer`. 
+The contract logic consists of various **arithmetic** and **logical operators**. Finally, the main contract, `OwnedToken` 
+**inherits** from `Context` and `ERC20` and calls super contracts constructors.
 
 It is transpiled into the following Rust code:
 ```rust
